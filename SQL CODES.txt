@@ -1,0 +1,483 @@
+Certainly! You can use SQL to create a table named "Carrier" with the specified columns and data types. Here's an example SQL query to create the table:
+
+```sql
+CREATE TABLE Carrier (
+    CarrierId INT PRIMARY KEY AUTO_INCREMENT,
+    CarrierName VARCHAR(255),
+    DiscountPercentageThirtyDaysAdvanceBooking INT,
+    DiscountPercentageSixtyDaysAdvanceBooking INT,
+    DiscountPercentageNinteyDaysAdvanceBooking INT,
+    RefundPercentageForTicketCancellation2DaysBeforeTravelDate INT,
+    RefundPercentageForTicketCancellation10DaysBeforeTravelDate INT,
+    RefundPercentageForTicketCancellation20DaysBeforeTravelDate INT,
+    BulkBookingDiscount INT,
+    SilverUserDiscount INT,
+    GoldUserDiscount INT,
+    PlatinumUserDiscount INT
+);
+```
+
+Explanation of the SQL query:
+- `CREATE TABLE Carrier`: This part of the query initiates the creation of a table named "Carrier."
+- `CarrierId INT PRIMARY KEY AUTO_INCREMENT`: This sets up an integer column named "CarrierId" as the primary key and specifies that it will be automatically incremented for each new record.
+- `CarrierName VARCHAR(255)`: This defines a variable character column named "CarrierName" with a maximum length of 255 characters.
+- The subsequent lines define various columns with different integer data types based on your requirements.
+
+Please note that the actual data types and lengths may need adjustment based on your specific database system (e.g., MySQL, PostgreSQL, SQL Server). Adjust the data types accordingly if you're using a different database. Additionally, the syntax for automatic incrementation may vary between database systems.
+
+
+
+
+
+Certainly! Here's an example of how you can insert sample data into the "Carrier" table:
+
+```sql
+INSERT INTO Carrier (
+    CarrierName,
+    DiscountPercentageThirtyDaysAdvanceBooking,
+    DiscountPercentageSixtyDaysAdvanceBooking,
+    DiscountPercentageNinteyDaysAdvanceBooking,
+    RefundPercentageForTicketCancellation2DaysBeforeTravelDate,
+    RefundPercentageForTicketCancellation10DaysBeforeTravelDate,
+    RefundPercentageForTicketCancellation20DaysBeforeTravelDate,
+    BulkBookingDiscount,
+    SilverUserDiscount,
+    GoldUserDiscount,
+    PlatinumUserDiscount
+) VALUES
+    ('Indigo', 5, 10, 15, 50, 70, 90, 3, 2, 5, 10),
+    ('Jet Airways', 7, 12, 18, 55, 75, 92, 5, 3, 7, 12),
+    ('Another Carrier', 6, 11, 16, 48, 68, 88, 4, 2, 6, 11);
+```
+
+This SQL query inserts three sample rows into the "Carrier" table. You can customize the values based on your specific requirements. The values represent hypothetical data for the various attributes you defined in the table.
+
+
+Certainly! Here's an extension to the previous example, adding five more sample rows:
+
+```sql
+INSERT INTO Carrier (
+    CarrierName,
+    DiscountPercentageThirtyDaysAdvanceBooking,
+    DiscountPercentageSixtyDaysAdvanceBooking,
+    DiscountPercentageNinteyDaysAdvanceBooking,
+    RefundPercentageForTicketCancellation2DaysBeforeTravelDate,
+    RefundPercentageForTicketCancellation10DaysBeforeTravelDate,
+    RefundPercentageForTicketCancellation20DaysBeforeTravelDate,
+    BulkBookingDiscount,
+    SilverUserDiscount,
+    GoldUserDiscount,
+    PlatinumUserDiscount
+) VALUES
+    ('Air Asia', 8, 14, 20, 60, 80, 95, 4, 3, 8, 14),
+    ('Emirates', 10, 18, 25, 70, 85, 97, 6, 4, 10, 18),
+    ('American Airlines', 6, 12, 18, 55, 75, 92, 5, 3, 7, 12),
+    ('British Airways', 9, 15, 22, 65, 82, 94, 7, 5, 9, 15),
+    ('Qatar Airways', 7, 14, 20, 58, 78, 93, 5, 3, 7, 14);
+```
+
+These additional INSERT statements add five more rows to the "Carrier" table with different carrier names and corresponding discount/refund percentages. Adjust the values as needed for your use case.
+
+
+
+Certainly! You can create the "Flight" table with the specified columns and a foreign key reference to the "Carrier" table. Here's an example SQL query:
+
+```sql
+CREATE TABLE Flight (
+    FlightID INT PRIMARY KEY AUTO_INCREMENT,
+    CarrierID INT,
+    Origin VARCHAR(255),
+    Destination VARCHAR(255),
+    Airfare INT,
+    SeatCapacityEconomyClass INT,
+    SeatCapacityBusinessClass INT,
+    SeatCapacityExecutiveClass INT,
+    FOREIGN KEY (CarrierID) REFERENCES Carrier(CarrierID)
+);
+```
+
+Explanation of the SQL query:
+- `CREATE TABLE Flight`: This part of the query initiates the creation of a table named "Flight."
+- `FlightID INT PRIMARY KEY AUTO_INCREMENT`: This sets up an integer column named "FlightID" as the primary key and specifies that it will be automatically incremented for each new record.
+- `CarrierID INT`: This is an integer column that will hold the foreign key referencing the "Carrier" table's primary key.
+- `Origin VARCHAR(255)` and `Destination VARCHAR(255)`: These are variable character columns for the origin and destination of the flight with a maximum length of 255 characters.
+- `Airfare INT`: This is an integer column representing the airfare for the flight.
+- `SeatCapacityEconomyClass INT`, `SeatCapacityBusinessClass INT`, `SeatCapacityExecutiveClass INT`: These are integer columns representing the seat capacities for different classes.
+
+The `FOREIGN KEY (CarrierID) REFERENCES Carrier(CarrierID)` establishes a foreign key relationship between the "Flight" table and the "Carrier" table, ensuring that the values in the "CarrierID" column in the "Flight" table correspond to existing values in the "CarrierID" column of the "Carrier" table.
+
+
+
+Certainly! Here's an example of how you can insert five sample rows into the "Flight" table:
+
+```sql
+INSERT INTO Flight (
+    CarrierID,
+    Origin,
+    Destination,
+    Airfare,
+    SeatCapacityEconomyClass,
+    SeatCapacityBusinessClass,
+    SeatCapacityExecutiveClass
+) VALUES
+    (1, 'Delhi', 'Mumbai', 5000, 150, 30, 10),
+    (2, 'New York', 'London', 800, 200, 50, 20),
+    (3, 'Los Angeles', 'Tokyo', 1200, 180, 40, 15),
+    (4, 'Dubai', 'Sydney', 10000, 250, 60, 25),
+    (5, 'Paris', 'Rome', 600, 160, 35, 12);
+```
+
+These INSERT statements add five sample rows to the "Flight" table. Adjust the values as needed for your specific requirements. The values include carrier IDs corresponding to the "Carrier" table, origin, destination, airfare, and seat capacities for different classes.
+
+
+
+
+
+Certainly! You can use the following SQL query to retrieve the Carrier Name and the total count of flights tagged to each carrier, displayed in ascending order of the flight count:
+
+```sql
+SELECT c.CarrierName, COUNT(f.FlightID) AS TotalFlights
+FROM Carrier c
+LEFT JOIN Flight f ON c.CarrierID = f.CarrierID
+GROUP BY c.CarrierName
+ORDER BY TotalFlights ASC;
+```
+
+Explanation of the SQL query:
+
+- `SELECT c.CarrierName, COUNT(f.FlightID) AS TotalFlights`: This selects the Carrier Name from the "Carrier" table and counts the total number of flights for each carrier using the `COUNT` function.
+
+- `FROM Carrier c`: Specifies that we are selecting data from the "Carrier" table and aliases it as 'c' for brevity.
+
+- `LEFT JOIN Flight f ON c.CarrierID = f.CarrierID`: Performs a left join between the "Carrier" and "Flight" tables based on the common "CarrierID" column. This includes carriers even if they have no flights (0 count).
+
+- `GROUP BY c.CarrierName`: Groups the results by Carrier Name.
+
+- `ORDER BY TotalFlights ASC`: Orders the result set in ascending order of the total flight count.
+
+This query will provide you with the Carrier Name and the total count of flights for each carrier, sorted in ascending order of the flight count. Adjust the column and table names if your actual database schema differs.
+
+
+
+
+Certainly! You can use the following SQL query to retrieve the FlightID, Carrier Name, Origin, Destination, and Airfare for a given travel destination with the lowest airfare:
+
+Assuming the given travel destination is 'YourDestination':
+
+```sql
+SELECT 
+    f.FlightID,
+    c.CarrierName,
+    f.Origin,
+    f.Destination,
+    f.Airfare
+FROM Flight f
+JOIN Carrier c ON f.CarrierID = c.CarrierID
+WHERE f.Destination = 'YourDestination'
+ORDER BY f.Airfare ASC
+LIMIT 1;
+```
+
+Explanation of the SQL query:
+
+- `SELECT f.FlightID, c.CarrierName, f.Origin, f.Destination, f.Airfare`: This selects the necessary columns from the "Flight" and "Carrier" tables.
+
+- `FROM Flight f`: Specifies that we are selecting data from the "Flight" table and aliases it as 'f' for brevity.
+
+- `JOIN Carrier c ON f.CarrierID = c.CarrierID`: Joins the "Flight" and "Carrier" tables based on the common "CarrierID" column.
+
+- `WHERE f.Destination = 'YourDestination'`: Filters the results to only include flights with the given travel destination.
+
+- `ORDER BY f.Airfare ASC`: Orders the results in ascending order of airfare.
+
+- `LIMIT 1`: Limits the result set to only one row, which is the flight with the lowest airfare.
+
+Replace 'YourDestination' with the actual travel destination for which you want to find the lowest airfare. Adjust column and table names if your actual database schema differs.
+
+
+
+Certainly! To achieve this, you'll need to use three tables - "Flight," "Carrier," and "FlightSchedule." Here's an example SQL query:
+
+Assuming the given travel destination is 'YourDestination':
+
+```sql
+SELECT 
+    f.FlightID,
+    c.CarrierName,
+    f.Origin,
+    f.Destination,
+    f.Airfare,
+    fs.TotalSeatsEconomyClass - COALESCE(COUNT(r.ReservationID), 0) AS AvailableSeatsEconomyClass,
+    fs.TotalSeatsBusinessClass - COALESCE(COUNT(r.ReservationID), 0) AS AvailableSeatsBusinessClass,
+    fs.TotalSeatsExecutiveClass - COALESCE(COUNT(r.ReservationID), 0) AS AvailableSeatsExecutiveClass
+FROM Flight f
+JOIN Carrier c ON f.CarrierID = c.CarrierID
+JOIN FlightSchedule fs ON f.FlightID = fs.FlightID
+LEFT JOIN Reservation r ON fs.ScheduleID = r.ScheduleID
+WHERE f.Destination = 'YourDestination'
+GROUP BY f.FlightID, c.CarrierName, f.Origin, f.Destination, f.Airfare, fs.TotalSeatsEconomyClass, fs.TotalSeatsBusinessClass, fs.TotalSeatsExecutiveClass;
+```
+
+Explanation of the SQL query:
+
+- `SELECT f.FlightID, c.CarrierName, f.Origin, f.Destination, f.Airfare`: This selects the necessary columns from the "Flight" and "Carrier" tables.
+
+- `fs.TotalSeatsEconomyClass - COALESCE(COUNT(r.ReservationID), 0) AS AvailableSeatsEconomyClass`: Calculates the available seats in the Economy class by subtracting the count of reservations from the total number of seats. The `COALESCE` function is used to handle cases where there are no reservations.
+
+- Similar calculations are done for Business and Executive classes.
+
+- `FROM Flight f`: Specifies that we are selecting data from the "Flight" table and aliases it as 'f' for brevity.
+
+- `JOIN Carrier c ON f.CarrierID = c.CarrierID`: Joins the "Flight" and "Carrier" tables based on the common "CarrierID" column.
+
+- `JOIN FlightSchedule fs ON f.FlightID = fs.FlightID`: Joins the "Flight" and "FlightSchedule" tables based on the common "FlightID" column.
+
+- `LEFT JOIN Reservation r ON fs.ScheduleID = r.ScheduleID`: Performs a left join with the "Reservation" table based on the common "ScheduleID" column. This is used to count the number of reservations for each flight.
+
+- `WHERE f.Destination = 'YourDestination'`: Filters the results to only include flights with the given travel destination.
+
+- `GROUP BY f.FlightID, c.CarrierName, f.Origin, f.Destination, f.Airfare, fs.TotalSeatsEconomyClass, fs.TotalSeatsBusinessClass, fs.TotalSeatsExecutiveClass`: Groups the results by the selected columns to calculate seat availability.
+
+Replace 'YourDestination' with the actual travel destination for which you want to retrieve information. Adjust column and table names if your actual database schema differs.
+
+
+
+
+
+Certainly! Here's the SQL query to create a table named "FlightBooking" with the specified details:
+
+```sql
+CREATE TABLE FlightBooking (
+    BookingID INT PRIMARY KEY,
+    FlightID INT,
+    UserID INT,
+    NoOfSeats INT,
+    SeatCategory VARCHAR(20) CHECK (SeatCategory IN ('Economy', 'Executive', 'Business')),
+    DateOfTravel DATE,
+    BookingStatus VARCHAR(20) CHECK (BookingStatus IN ('Booked', 'Travel Completed', 'Cancelled')),
+    BookingAmount INT,
+    FOREIGN KEY (FlightID) REFERENCES Flight(FlightID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+```
+
+Explanation of the SQL query:
+
+- `BookingID INT PRIMARY KEY`: This sets up an integer column named "BookingID" as the primary key.
+
+- `FlightID INT` and `UserID INT`: These are integer columns representing foreign keys referencing the "Flight" and "Users" tables, respectively.
+
+- `NoOfSeats INT`: This is an integer column representing the number of seats booked.
+
+- `SeatCategory VARCHAR(20) CHECK (SeatCategory IN ('Economy', 'Executive', 'Business'))`: This is a variable character column with a maximum length of 20 characters, and it includes a check constraint to allow only specific values ('Economy', 'Executive', 'Business').
+
+- `DateOfTravel DATE`: This is a date column representing the date of travel.
+
+- `BookingStatus VARCHAR(20) CHECK (BookingStatus IN ('Booked', 'Travel Completed', 'Cancelled'))`: This is a variable character column with a maximum length of 20 characters, and it includes a check constraint to allow only specific values ('Booked', 'Travel Completed', 'Cancelled').
+
+- `BookingAmount INT`: This is an integer column representing the booking amount.
+
+- `FOREIGN KEY (FlightID) REFERENCES Flight(FlightID)`: This establishes a foreign key relationship with the "Flight" table.
+
+- `FOREIGN KEY (UserID) REFERENCES Users(UserID)`: This establishes a foreign key relationship with the "Users" table.
+
+Feel free to adjust the column names, data types, and constraints based on your specific requirements or database system.
+
+
+
+Certainly! Here's an example of how you can insert five sample rows into the "FlightBooking" table:
+
+```sql
+INSERT INTO FlightBooking (
+    BookingID,
+    FlightID,
+    UserID,
+    NoOfSeats,
+    SeatCategory,
+    DateOfTravel,
+    BookingStatus,
+    BookingAmount
+) VALUES
+    (1, 1, 101, 2, 'Economy', '2024-02-15', 'Booked', 2000),
+    (2, 2, 102, 1, 'Business', '2024-03-10', 'Travel Completed', 5000),
+    (3, 3, 103, 3, 'Executive', '2024-04-20', 'Cancelled', 7500),
+    (4, 4, 104, 1, 'Economy', '2024-05-05', 'Booked', 1200),
+    (5, 5, 105, 2, 'Business', '2024-06-15', 'Booked', 3000);
+```
+
+These INSERT statements add five sample rows to the "FlightBooking" table. Adjust the values as needed for your specific requirements. The values include booking IDs, flight IDs, user IDs, the number of seats, seat categories, date of travel, booking status, and booking amounts.
+
+
+
+To achieve this, you can use two separate SQL UPDATE statements. The first statement updates the Booking status to 'Cancelled' in the "FlightBooking" table, and the second statement decrements the booked seat count in the "FlightSchedule" table. Assuming the cancellation is identified by a specific BookingID, here's an example:
+
+```sql
+-- Update Booking status to 'Cancelled' in FlightBooking table
+UPDATE FlightBooking
+SET BookingStatus = 'Cancelled'
+WHERE BookingID = YourBookingID;
+
+-- Update FlightSchedule to decrement booked seat count
+UPDATE FlightSchedule fs
+SET
+    fs.BookedSeats = fs.BookedSeats - (SELECT NoOfSeats FROM FlightBooking WHERE BookingID = YourBookingID)
+WHERE
+    fs.FlightID = (SELECT FlightID FROM FlightBooking WHERE BookingID = YourBookingID)
+    AND fs.DateOfTravel = (SELECT DateOfTravel FROM FlightBooking WHERE BookingID = YourBookingID);
+```
+
+Replace `YourBookingID` with the actual BookingID for which you want to cancel the booking.
+
+Explanation:
+
+1. The first UPDATE statement sets the BookingStatus to 'Cancelled' in the "FlightBooking" table where the BookingID matches the specified value.
+
+2. The second UPDATE statement decrements the booked seat count in the "FlightSchedule" table. It uses a subquery to retrieve the NoOfSeats from the "FlightBooking" table for the given BookingID, and then updates the "FlightSchedule" table by subtracting this value from the current booked seat count.
+
+Make sure to execute these statements in the correct order, and replace the placeholder with the actual BookingID you want to cancel. Adjust the column and table names if your actual database schema differs.
+
+
+
+To remove all flights that belong to a given carrier and for a specific travel destination, you can use the DELETE statement. Here's an example SQL query:
+
+```sql
+DELETE FROM Flight
+WHERE CarrierID = YourCarrierID
+  AND Destination = 'YourDestination';
+```
+
+Replace `YourCarrierID` with the actual CarrierID for the carrier you want to remove flights for, and 'YourDestination' with the specific travel destination.
+
+Explanation:
+
+- `DELETE FROM Flight`: Specifies the table from which you want to delete rows.
+
+- `WHERE CarrierID = YourCarrierID AND Destination = 'YourDestination'`: Specifies the conditions for deletion. It deletes rows where the CarrierID matches the specified CarrierID and the Destination matches the specified travel destination.
+
+Please make sure to use caution when using the DELETE statement, as it permanently removes data from the table. Always double-check your conditions to avoid unintentional data loss. Adjust column and table names if your actual database schema differs.
+
+
+
+To view all carrier names that operate on a given travel route, you can use a SELECT statement with JOINs on the "Carrier" and "Flight" tables. Here's an example SQL query:
+
+```sql
+SELECT DISTINCT c.CarrierName
+FROM Carrier c
+JOIN Flight f ON c.CarrierID = f.CarrierID
+WHERE f.Origin = 'YourOrigin' AND f.Destination = 'YourDestination';
+```
+
+Replace 'YourOrigin' and 'YourDestination' with the actual travel route (origin and destination) for which you want to find the carriers.
+
+Explanation:
+
+- `SELECT DISTINCT c.CarrierName`: This selects distinct carrier names from the "Carrier" table.
+
+- `FROM Carrier c`: Specifies that we are selecting data from the "Carrier" table and aliases it as 'c' for brevity.
+
+- `JOIN Flight f ON c.CarrierID = f.CarrierID`: Joins the "Carrier" and "Flight" tables based on the common "CarrierID" column.
+
+- `WHERE f.Origin = 'YourOrigin' AND f.Destination = 'YourDestination'`: Filters the results to only include carriers operating on the specified travel route.
+
+The DISTINCT keyword is used to ensure that each carrier name appears only once in the result set. Adjust column and table names if your actual database schema differs.
+
+
+
+To update the airfare by increasing it by 10% for a given travel route and carrier, considering the condition that the minimum discount percentage is greater than 3%, you can use the following SQL query:
+
+```sql
+UPDATE Flight
+SET Airfare = Airfare * 1.1
+WHERE CarrierID = YourCarrierID
+  AND Origin = 'YourOrigin'
+  AND Destination = 'YourDestination'
+  AND Airfare * (1 - (
+      SELECT MIN(DiscountPercentageThirtyDaysAdvanceBooking) 
+      FROM Carrier 
+      WHERE CarrierID = YourCarrierID
+    ) / 100) > Airfare * 0.03;
+```
+
+Replace `YourCarrierID`, 'YourOrigin', and 'YourDestination' with the actual CarrierID, origin, and destination for which you want to update the airfare.
+
+Explanation:
+
+- `UPDATE Flight`: Specifies the table to update.
+
+- `SET Airfare = Airfare * 1.1`: Increases the airfare by 10%.
+
+- `WHERE CarrierID = YourCarrierID AND Origin = 'YourOrigin' AND Destination = 'YourDestination'`: Specifies the conditions for the update.
+
+- The subquery `(SELECT MIN(DiscountPercentageThirtyDaysAdvanceBooking) FROM Carrier WHERE CarrierID = YourCarrierID) / 100` retrieves the minimum discount percentage for the given carrier, and the condition `Airfare * (1 - ...) > Airfare * 0.03` checks if the airfare after applying the minimum discount is still greater than 3% of the original airfare.
+
+Adjust column and table names if your actual database schema differs.
+
+
+
+
+
+Certainly! Here's an example SQL query to create a "User" table with the specified details:
+
+```sql
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    UserName VARCHAR(255),
+    Password VARCHAR(255),
+    Role VARCHAR(10) CHECK (Role IN ('Admin', 'Customer')),
+    CustomerCategory VARCHAR(10) CHECK (CustomerCategory IN ('Silver', 'Gold', 'Platinum')),
+    Phone INT,
+    EmailId VARCHAR(255),
+    Address1 VARCHAR(255),
+    Address2 VARCHAR(255),
+    City VARCHAR(255),
+    State VARCHAR(255),
+    Country VARCHAR(255),
+    ZipCode INT,
+    DOB DATE
+);
+```
+
+Explanation of the SQL query:
+
+- `UserID INT PRIMARY KEY`: This sets up an integer column named "UserID" as the primary key.
+
+- `UserName VARCHAR(255)`, `Password VARCHAR(255)`: These are variable character columns for the username and password.
+
+- `Role VARCHAR(10) CHECK (Role IN ('Admin', 'Customer'))`: This is a variable character column with a maximum length of 10 characters, and it includes a check constraint to allow only specific values ('Admin', 'Customer').
+
+- `CustomerCategory VARCHAR(10) CHECK (CustomerCategory IN ('Silver', 'Gold', 'Platinum'))`: This is a variable character column with a maximum length of 10 characters, and it includes a check constraint to allow only specific values ('Silver', 'Gold', 'Platinum').
+
+- `Phone INT`, `EmailId VARCHAR(255)`, `Address1`, `Address2`, `City`, `State`, `Country`, `ZipCode INT`, `DOB DATE`: These columns represent various user details like phone number, email, address, city, state, country, zip code, and date of birth.
+
+Feel free to adjust the column names, data types, and constraints based on your specific requirements or database system.
+
+
+
+
+Certainly! Here's an example of how you can insert five sample rows into the "Users" table:
+
+```sql
+INSERT INTO Users (
+    UserID,
+    UserName,
+    Password,
+    Role,
+    CustomerCategory,
+    Phone,
+    EmailId,
+    Address1,
+    Address2,
+    City,
+    State,
+    Country,
+    ZipCode,
+    DOB
+) VALUES
+    (1, 'admin_user', 'admin_password', 'Admin', NULL, 1234567890, 'admin@example.com', 'Admin Street', '', 'AdminCity', 'AdminState', 'AdminCountry', 12345, '1990-01-01'),
+    (2, 'silver_user', 'silver_password', 'Customer', 'Silver', 9876543210, 'silver@example.com', 'Silver Street', '', 'SilverCity', 'SilverState', 'SilverCountry', 54321, '1985-05-15'),
+    (3, 'gold_user', 'gold_password', 'Customer', 'Gold', 8765432109, 'gold@example.com', 'Gold Street', '', 'GoldCity', 'GoldState', 'GoldCountry', 67890, '1995-08-20'),
+    (4, 'platinum_user', 'platinum_password', 'Customer', 'Platinum', 7654321098, 'platinum@example.com', 'Platinum Street', '', 'PlatinumCity', 'PlatinumState', 'PlatinumCountry', 98765, '1980-03-10'),
+    (5, 'customer_user', 'customer_password', 'Customer', NULL, 6543210987, 'customer@example.com', 'Customer Street', '', 'CustomerCity', 'CustomerState', 'CustomerCountry', 23456, '2000-12-05');
+```
+
+These INSERT statements add five sample rows to the "Users" table. Adjust the values as needed for your specific requirements. The values include user IDs, usernames, passwords, roles, customer categories, contact details, and other user information.
